@@ -1,5 +1,5 @@
 #include<stdio.h>
-/*
+/**
  * main - will output the phrase "Programming is like building a multilingual
  * puzzle"
  * Return:0
