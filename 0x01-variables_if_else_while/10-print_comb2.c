@@ -6,16 +6,23 @@
 
 int main(void)
 {
-	int a;
+	int a = 48;
+	int b = 48;
 
-	for (a = 48; a < 58; a++)
+	while (a < 58 && b < 58)
 	{
 		putchar(a);
-		putchar(a);
-		if (a < 57)
+		putchar(b);
+		if (!(a == 57 && b == 57))
 		{
 		putchar(',');
 		putchar(' ');
+		}
+		b++;
+		if (b == 58)
+		{
+			b = 48;
+			a++;
 		}
 	}
 	putchar('\n');
