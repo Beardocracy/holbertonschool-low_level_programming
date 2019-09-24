@@ -15,27 +15,25 @@ void times_table(void)
 		for (n = 0; n < 10; n++)
 		{
 			mult = (m * n);
-			if (mult < 10)
+			if (n == 0)
 			{
+				_putchar('0');
+			}
+			else if (mult < 10)
+			{
+				_putchar(',');
+				_putchar(' ');
+				_putchar(' ');
 				_putchar(mult + '0');
 			}
 			else
 			{
+				_putchar(',');
+				_putchar(' ');
 				_putchar((mult / 10) + '0');
 				_putchar((mult % 10) + '0');
 			}
-			if (n < 9 && mult < 10)
-			{
-				_putchar(',');
-				_putchar(' ');
-				_putchar(' ');
-			}
-			else if (n < 9 && mult > 9)
-			{
-				_putchar(',');
-				_putchar(' ');
-			}
-			else
+			if (n == 9)
 				_putchar('\n');
 		}
 	}
