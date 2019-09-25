@@ -14,7 +14,7 @@ int main(void)
 
 	for (i = 0; i < 98; i++)
 	{
-		printf("%g", fib1);
+		printf("%e", fib1);
 
 		future = fib1 + fib2;
 		fib1 = fib2;
