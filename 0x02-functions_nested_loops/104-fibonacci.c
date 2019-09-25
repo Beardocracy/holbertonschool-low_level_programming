@@ -11,7 +11,7 @@ int main(void)
 	unsigned long int fib1_t = 1;
 	unsigned long int fib2_t = 2;
 	unsigned long int fib1_h, fib2_h, fut_t, fut_h;
-	unsigned long int bignumb = 10000000;
+	unsigned long int bignumb = 1000000000000000000;
 
 	for (i = 0; i < 90; i++)
 	{
