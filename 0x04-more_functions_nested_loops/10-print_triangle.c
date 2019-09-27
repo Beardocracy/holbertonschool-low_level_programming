@@ -12,6 +12,8 @@ void print_triangle(int size)
 	spaces = size - 1;
 	hashes = size - spaces;
 
+	if (size <= 0)
+		_putchar('\n');
 	while (spaces >= 0)
 	{
 		for (i = 0; i < spaces; i++)
