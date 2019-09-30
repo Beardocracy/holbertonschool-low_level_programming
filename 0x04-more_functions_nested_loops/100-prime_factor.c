@@ -8,7 +8,7 @@
 int main(void)
 {
 	long int bignumb = 612852475143;
-	long int i, j;
+	long int i;
 
 	for (i = 2; i < bignumb / 2; i++)
 	{
