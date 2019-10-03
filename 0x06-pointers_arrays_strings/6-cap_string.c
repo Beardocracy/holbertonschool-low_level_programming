@@ -10,7 +10,7 @@ char *cap_string(char *s)
 	int i, j, prev;
 	char comp[] = "\n\t ,;.!?\"(){}";
 
-	for (i = 0; s[i] != '\0'; i++)
+	for (i = 0; s[i - 1] != '\0'; i++)
 	{
 		prev = i - 1;
 		for (j = 0; comp[j] != '\0'; j++)
