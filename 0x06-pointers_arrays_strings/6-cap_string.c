@@ -7,17 +7,19 @@
 
 char *cap_string(char *s)
 {
-	int i, j, prev;
+	int i, j, next;
 	char comp[] = "\n\t ,;.!?\"(){}";
 
-	for (i = 0; s[i - 1] != '\0'; i++)
+	if (*s >= 97 && *s <= 122)
+		*s -= 32;
+	for (i = 0; s[i] != '\0'; i++)
 	{
-		prev = i - 1;
+		next = i + 1;
 		for (j = 0; comp[j] != '\0'; j++)
 		{
-			if ((comp[j] == s[prev]) && s[i] >= 97 && s[i] <= 122)
+			if ((comp[j] == s[i]) && s[next] >= 97 && s[next] <= 122)
 			{
-				s[i] -= 32;
+				s[next] -= 32;
 			}
 		}
 	}
