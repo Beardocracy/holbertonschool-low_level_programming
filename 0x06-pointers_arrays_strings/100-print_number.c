@@ -33,7 +33,17 @@ void print_number(int n)
 		_putchar('-');
 		n *= -1;
 	}
-	for (i = 10; i <= n; i *= 10)
+	if (n < 0)
+	{
+		_putchar((((n / pow_ten(9)) % 10) * -1) + '0');
+		n = (n % pow_ten(9)) * -1;
+	}
+	if (n / pow_ten(9) > 0)
+	{
+		_putchar((n / pow_ten(9)) + '0');
+		n = n % pow_ten(9);
+	}
+	for (i = 10; (n / i) > 0; i *= 10)
 		zero++;
 	for ( ; zero >= 1; zero--)
 	{
