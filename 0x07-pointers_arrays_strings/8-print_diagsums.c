@@ -12,9 +12,9 @@ void print_diagsums(int *a, int size)
 
 	rtol = 0;
 	ltor = 0;
-	for (i = 0; i < size; i++)
-		ltor = ltor + a[i * size + i];
-	for (j = 0; j < size; j++)
-		rtol = rtol + a[size - 1 + j * (size -1)];
+	for (i = 0, j = size + 1; i < size; i++)
+		ltor = ltor + a[i * j];
+	for (i = 1, j = size - 1; i <= size; i++)
+		rtol = rtol + a[i * j];
 	printf("%d, %d\n", ltor, rtol);
 }
