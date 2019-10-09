@@ -8,38 +8,30 @@
 int _atoi(char *s)
 {
 	int i, end;
-	int n, flag = 0;
+	int sum = 0;
 	int pos_neg = 1;
-	int INT_MAX = 2147483647;
-	int INT_MIN = -2147483648;
 
-	while (s[end] != '\0')
-		end++;
+	for (end = 0; s[end] != '\0'; end++)
+		;
 	for (i = 0; i < end; i++)
 	{
-		if (flag == 0 && (s[i] == '-' || (s[i] >= '0' && s[i] <= '9')))
+		if (s[i] == '-')
+			pos_neg = -pos_neg;
+		else if (s[i] >= '0' && s[i] <= '9')
 		{
-			if (s[i] == '-')
-				pos_neg *= -1;
-			else
+			sum = s[i] - '0';
+			while (s[i + 1] >= '0' && s[i + 1] <= '9')
 			{
-				n += s[i] - 48;
-				flag++;
+				if (sum > 0)
+					sum = sum * 10 + s[i + 1] - '0';
+				else if (sum == 0)
+					sum = sum + s[i + 1] - '0';
+				i++;
 			}
-		}
-		else if (flag == 1 && (s[i] >= '0' && s[i] <= '9'))
-		{
-			if (pos_neg == -1 && (s[i] - 48 > INT_MIN - n))
-				return (INT_MIN);
-			else if (pos_neg == 1 && (s[i] - 48 > INT_MAX - n))
-				return (INT_MAX);
-			else
-				n = n * 10 + s[i] - '0';
-		}
-		else if (flag == 1 && (s[i] < '0' || s[i] > '9'))
 			i = end;
+		}
 	}
-	n *= pos_neg;
-	return (n);
+	sum *= pos_neg;
+	return (sum);
 }
 
