@@ -11,5 +11,8 @@ int _sqrt_recursion(int n);
 int _sqrt_closest(int *x, int *y);
 int is_prime_number(int n);
 int is_divisible(int *i, int *p, int *j);
+int is_palindrome(char *s);
+int final_char(char *str);
+int test_tset(char *str, char *fchar);
 
 #endif /* HOLBERTON_H */
