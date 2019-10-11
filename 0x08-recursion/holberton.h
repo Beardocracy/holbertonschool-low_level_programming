@@ -14,5 +14,7 @@ int is_divisible(int *i, int *p, int *j);
 int is_palindrome(char *s);
 int final_char(char *str);
 int test_tset(char *str, char *fchar);
+int wildcmp(char *s1, char *s2);
+int matchmaker(char *s1, char *s2, char *s2copy);
 
 #endif /* HOLBERTON_H */
