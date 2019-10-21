@@ -11,6 +11,8 @@ char *_strdup(char *str)
 	unsigned int i, len;
 	char *arr;
 
+	if (str == NULL)
+		return (NULL);
 	for (len = 0; str[len] != '\0'; len++)
 		;
 	if (len == 0)
