@@ -11,8 +11,6 @@ char *_strdup(char *str)
 	unsigned int i, len;
 	char *arr;
 
-	if (str == NULL)
-		return (NULL);
 	for (len = 0; str[len] != '\0'; len++)
 		;
 	arr = malloc(sizeof(*arr) * len + 1);
@@ -36,10 +34,16 @@ dog_t *new_dog(char *name, float age, char *owner)
 	dog_t *new;
 
 	new = malloc(sizeof(dog_t));
-	new->name = _strdup(name);
-	new->age = age;
-	new->owner = _strdup(owner);
-	if (new == NULL || new->name == NULL || new->owner == NULL)
+	if (new == NULL)
 		return (NULL);
+	if (name == NULL)
+		return (NULL);
+	else
+		new->name = _strdup(name);
+	new->age = age;
+	if (owner == NULL)
+		return (NULL);
+	else
+		new->owner = _strdup(owner);
 	return (new);
 }
