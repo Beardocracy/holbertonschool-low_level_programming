@@ -19,13 +19,14 @@ int main(int argc, char *argv[])
 		printf("Error\n");
 		exit(98);
 	}
-	if (*(argv[3]) == 0 && (*(argv[2]) == '/' || *(argv[2]) == '%'))
+	if ((*(argv[3]) == '0' && *(argv[2]) == '/') || (*(argv[3]) == '0' &&
+					*(argv[2]) == '%'))
 	{
 		printf("Error\n");
 		exit(99);
 	}
 	math = get_op_func(argv[2]);
-	if (math == NULL)
+	if (*math == NULL)
 	{
 		printf("Error\n");
 		exit(100);
