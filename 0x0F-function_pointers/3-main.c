@@ -23,13 +23,13 @@ int main(int argc, char *argv[])
 					*(argv[2]) == '%'))
 	{
 		printf("Error\n");
-		exit(99);
+		exit(100);
 	}
 	math = get_op_func(argv[2]);
 	if (*math == NULL)
 	{
 		printf("Error\n");
-		exit(100);
+		exit(99);
 	}
 	printf("%d\n", math(atoi(argv[1]), atoi(argv[3])));
 	return (0);
