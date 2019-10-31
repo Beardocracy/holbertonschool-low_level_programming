@@ -8,13 +8,13 @@
  */
 size_t print_list(const list_t *h)
 {
-	long unsigned int n = 0;
+	unsigned long int n = 0;
 	list_t *list_pointer;
+
 	list_pointer = (list_t *)h;
 
 	while (list_pointer)
 	{
-		
 		if (list_pointer->str == NULL)
 			printf("[%u] (nil)\n", list_pointer->len);
 		else
