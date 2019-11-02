@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "holberton.h"
 
 /**
   * main - adds positive numbers and prints the result
@@ -9,21 +10,27 @@
   */
 int main(int argc, char *argv[])
 {
-	int i;
+	int i, j;
 	int sum = 0;
 
 	if (argc <= 1)
-		printf("0\n");
-	for (i = 1; i < argc; i++)
 	{
-		if (atoi(argv[i]) <= 0)
+		printf("0\n");
+		return (0);
+	}
+
+	for (i = 1; i <= argc - 1; i++)
+	{
+		for (j = 0; argv[i][j] != '\0'; j++)
 		{
-			printf("Error\n");
-			return (1);
+			if (argv[i][j] < '0' || argv[i][j] > '9')
+			{
+				printf("Error\n");
+				return (1);
+			}
 		}
 		sum += atoi(argv[i]);
 	}
-	if (argc > 1)
-		printf("%d\n", sum);
+	printf("%d\n", sum);
 	return (0);
 }
