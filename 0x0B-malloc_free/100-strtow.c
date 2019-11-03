@@ -42,7 +42,7 @@ char **strtow(char *str)
 	}
 	if (words == 0)
 		return (NULL);
-	tab = malloc(sizeof(char *) * words + 1);
+	tab = malloc(sizeof(char *) * (words + 1));
 	if (tab == NULL)
 		return (NULL);
 	tab[words] = NULL;
