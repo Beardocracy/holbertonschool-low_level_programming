@@ -3,11 +3,11 @@
 
 /**
  * free_fall - frees a listint_u linked list.
- * @h: pointer to the head.
+ * @head: pointer to the head.
  */
 void free_fall(listint_u *head)
 {
-	listint_u * temp;
+	listint_u *temp;
 
 	while (head)
 	{
