@@ -13,13 +13,16 @@ listint_u *repeat_number_checker(listint_u **head, unsigned long int n)
 	listint_u *new, *loop;
 
 	loop = *head;
-/*	while (loop != NULL)
+	while (loop != NULL)
 	{
 		if (n == loop->n)
+		{
+			*head = NULL;
 			return (NULL);
+		}
 		loop = loop->next;
 	}
-*/
+
 	new = malloc(sizeof(listint_u));
 	if (new == NULL)
 		exit(98);
@@ -52,7 +55,7 @@ size_t print_listint_safe(const listint_t *head)
 	if (loop_list == NULL)
 		exit(98);
 	loop_list = NULL;
-	while (temp2)
+/*	while (temp2)
 	{
 		repeat_number_checker(&loop_list, (unsigned long int)temp2);
 		temp2 = temp2->next;
@@ -63,15 +66,29 @@ size_t print_listint_safe(const listint_t *head)
 		printf("%lu\n", loop_list->n);
 		loop_list = loop_list->next;
 	}
-	printf("FFFFFFFFFFFFFFFFFF\n");
+*/
 	while (temp)
 	{
-		printf("[%p] %d\n", (void *)temp, temp->n);
-		count++;
+		repeat_number_checker(&loop_list, (unsigned long int)temp);
+		if (loop_list == NULL)
+		{
+			printf("-> [%p] %d\n", (void *)temp, temp->n);
+			return (count);
+		}
+		if (loop_list)
+		{
+			printf("[%p] %d\n", (void *)temp, temp->n);
+			count++;
+		}
 		temp = temp->next;
-//		repeat_number_checker(&loop_list, (unsigned long int)temp);
 	}
-//	if (loop_list == NULL)
-//		printf("-> [%p] %d\n", (void *)temp, temp->n);
+/*	while (loop_list)
+	{
+		printf("%lu\n", loop_list->n);
+		loop_list = loop_list->next;
+	}
+*/	printf("-----------\n");
+	if (loop_list == NULL)
+		printf("-> [%p] %d\n", (void *)temp, temp->n);
 	return (count);
 }
