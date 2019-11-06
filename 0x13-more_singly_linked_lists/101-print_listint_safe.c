@@ -2,6 +2,22 @@
 #include <string.h>
 
 /**
+ * free_fall - frees a listint_u linked list.
+ * @h: pointer to the head.
+ */
+void free_fall(listint_u *head)
+{
+	listint_u * temp;
+
+	while (head)
+	{
+		temp = head->next;
+		free(head);
+		head = temp;
+	}
+}
+
+/**
  * repeat_number_checker - adds a number to a linked list, if not a
  * repeat.
  * @head: double pointer to a listint_u linked list.
@@ -17,6 +33,7 @@ listint_u *repeat_number_checker(listint_u **head, unsigned long int n)
 	{
 		if (n == loop->n)
 		{
+			free_fall(*head);
 			*head = NULL;
 			return (NULL);
 		}
@@ -69,5 +86,6 @@ size_t print_listint_safe(const listint_t *head)
 		}
 		temp = temp->next;
 	}
+	free_fall(loop_list);
 	return (count);
 }
