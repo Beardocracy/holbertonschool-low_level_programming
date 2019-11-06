@@ -27,6 +27,8 @@ size_t free_listint_safe(listint_t **h)
 	size_t count = 0;
 	listint_t *loop, *temp;
 
+	if (*h == NULL)
+		return (0);
 	loop = check_loop_start(*h);
 	if (loop)
 		loop_cutter(loop);
