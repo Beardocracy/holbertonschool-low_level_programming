@@ -49,7 +49,7 @@ size_t print_listint_safe(const listint_t *head)
 	size_t count = 0, flag = 0;
 
 	if (head == NULL)
-		exit(98);
+		return (0);
 
 	temp = (listint_t *)head;
 	loop = check_loop_start(temp);
@@ -66,11 +66,15 @@ size_t print_listint_safe(const listint_t *head)
 		printf("-> [%p] %d\n", (void *)loop, loop->n);
 		return (count);
 	}
-	while (temp)
+	if (!loop)
 	{
-		printf("[%p] %d\n", (void *)temp, temp->n);
-		count++;
-		temp =  temp->next;
+		while (temp)
+		{
+			printf("[%p] %d\n", (void *)temp, temp->n);
+			count++;
+			temp =  temp->next;
+		}
+		return (count);
 	}
-	return (count);
+	exit(98);
 }
