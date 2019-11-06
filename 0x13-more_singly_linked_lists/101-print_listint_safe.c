@@ -49,7 +49,7 @@ size_t print_listint_safe(const listint_t *head)
 	size_t count = 0, flag = 0;
 
 	if (head == NULL)
-		return (0);
+		exit(98);
 
 	temp = (listint_t *)head;
 	loop = check_loop_start(temp);
