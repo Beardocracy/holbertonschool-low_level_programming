@@ -62,10 +62,8 @@ size_t print_listint_safe(const listint_t *head)
 	size_t count = 0;
 
 	if (head == NULL)
-	{
-		printf("Error\n");
-		exit(98);
-	}
+		return (0);
+
 	temp = (listint_t *)head;
 	loop_list = malloc(sizeof(listint_u *));
 	if (loop_list == NULL)
