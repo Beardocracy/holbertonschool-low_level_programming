@@ -45,5 +45,9 @@ int delete_nodeint_at_index(listint_t **head, unsigned int index);
 listint_t *reverse_listint(listint_t **head);
 size_t print_listint_safe(const listint_t *head);
 listint_u *repeat_number_checker(listint_u **head, unsigned long int n);
+size_t free_listint_safe(listint_t **h);
+void loop_cutter(listint_t *loop);
+listint_t *loop_start(listint_t *p, listint_t *head);
+listint_t *check_loop_start(listint_t *head);
 
 #endif /* LISTS_H */
