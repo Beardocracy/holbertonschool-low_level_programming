@@ -25,18 +25,17 @@ void loop_cutter(listint_t *loop)
 size_t free_listint_safe(listint_t **h)
 {
 	size_t count = 0;
-	listint_t *head, *loop, *temp;
+	listint_t *loop, *temp;
 
-	head = *h;
-	loop = check_loop_start(head);
+	loop = check_loop_start(*h);
 	if (loop)
 		loop_cutter(loop);
-	while (head)
+	while (*h)
 	{
-		temp = head->next;
-		free(head);
+		temp = (*h)->next;
+		free(*h);
 		count++;
-		head = temp;
+		*h = temp;
 	}
 	return (count);
 }
