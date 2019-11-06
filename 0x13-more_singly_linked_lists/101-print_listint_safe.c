@@ -1,53 +1,41 @@
 #include "lists.h"
-#include <string.h>
 
 /**
- * free_fall - frees a listint_u linked list.
- * @head: pointer to the head.
+ * loop_start - determines the loop point.
+ * @p: pointer to where the tortoise and the hare met up.
+ * @head: pointer to the first node.
+ * Return: the loop node.
  */
-void free_fall(listint_u *head)
+listint_t *loop_start(listint_t *p, listint_t *head)
 {
-	listint_u *temp;
+	listint_t *q = head;
 
-	while (head)
+	while (p != q)
 	{
-		temp = head->next;
-		free(head);
-		head = temp;
+		p = p->next;
+		q = q->next;
 	}
+	return (p);
 }
 
 /**
- * repeat_number_checker - adds a number to a linked list, if not a
- * repeat.
- * @head: double pointer to a listint_u linked list.
- * @n: the number to be checked and added.
- * Return: Pointer to the head of the list. NULL if there is a match.
+ * check_loop_start - checks a listint_t list for loops.
+ * @head: the first node
+ * Return: a pointer to the node loop.
  */
-listint_u *repeat_number_checker(listint_u **head, unsigned long int n)
+listint_t *check_loop_start(listint_t *head)
 {
-	listint_u *new, *loop;
+	listint_t *p = head;
+	listint_t *q = head;
 
-	loop = *head;
-	while (loop != NULL)
+	while (p && q && q->next)
 	{
-		if (n == loop->n)
-		{
-			free_fall(*head);
-			*head = NULL;
-			return (NULL);
-		}
-		loop = loop->next;
+		p = p->next;
+		q = q->next->next;
+		if (p == q)
+			return (loop_start(p, head));
 	}
-
-	new = malloc(sizeof(listint_u));
-	if (new == NULL)
-		exit(98);
-	new->n = n;
-	new->next = *head;
-	*head = new;
-
-	return (new);
+	return (NULL);
 }
 
 /**
@@ -57,33 +45,32 @@ listint_u *repeat_number_checker(listint_u **head, unsigned long int n)
  */
 size_t print_listint_safe(const listint_t *head)
 {
-	listint_t *temp;
-	listint_u *loop_list;
-	size_t count = 0;
+	listint_t *temp, *loop;
+	size_t count = 0, flag = 0;
 
 	if (head == NULL)
 		return (0);
 
 	temp = (listint_t *)head;
-	loop_list = malloc(sizeof(listint_u *));
-	if (loop_list == NULL)
-		exit(98);
-	loop_list = NULL;
-	while (temp)
+	loop = check_loop_start(temp);
+	if (loop)
 	{
-		repeat_number_checker(&loop_list, (unsigned long int)temp);
-		if (loop_list == NULL)
-		{
-			printf("-> [%p] %d\n", (void *)temp, temp->n);
-			return (count);
-		}
-		if (loop_list)
+		while (flag < 2)
 		{
 			printf("[%p] %d\n", (void *)temp, temp->n);
 			count++;
+			temp = temp->next;
+			if (temp == loop)
+				flag++;
 		}
-		temp = temp->next;
+		printf("-> [%p] %d\n", (void *)loop, loop->n);
+		return (count);
 	}
-	free_fall(loop_list);
+	while (temp)
+	{
+		printf("[%p] %d\n", (void *)temp, temp->n);
+		count++;
+		temp =  temp->next;
+	}
 	return (count);
 }
