@@ -1,41 +1,20 @@
 #include "holberton.h"
+#include <stdio.h>
 
 /**
  * power_2 - returns the value of 2 to the power of n.
- * @n: unsigned int.
+ *@n: unsigned int.
  * Return: unsigned int.
  */
 unsigned int power_2(unsigned int n)
 {
-	unsigned int result, i;
+	unsigned int result = 1, i;
 
-	if (n = 0)
+	if (n == 0)
 		return (1);
-	for (i = 0; i <= n; i++)
+	for (i = 0; i < n; i++)
 		result *= 2;
 	return (result);
-}
-
-/**
- * reverse_str - reverses a string.
- * @s: the string to be reversed.
- * Return: pointer to reversed string.
- */
-char *reverse_str(char *s)
-{
-	char temp;
-	int i = 0, j = 0;
-
-	while (s[i])
-		i++;
-	i--;
-	for (; j <= i; j++, i--)
-	{
-		temp = s[j];
-		s[j] = s[i];
-		s[i] = temp;
-	}
-	return (s);
 }
 
 /**
@@ -45,23 +24,21 @@ char *reverse_str(char *s)
  */
 unsigned int binary_to_uint(const char *b)
 {
-	unsigned int i = 0, sum = 0;
+	unsigned int i = 0, sum = 0, j = 0, k;
 
 	if (b == NULL)
 		return (0);
-	while (b[i])
+	while (b[i] != '\0')
 	{
 		if (b[i] == '1' || b[i] == '0')
 			i++;
 		else
 			return (0);
 	}
-	reverse_str[b];
-	for (i = 0; b[i] && i < 32; i++)
+	for (k = i, i--; j != k ; i--, j++)
 	{
 		if (b[i] == '1')
-			sum += power_2(i);
+			sum += power_2(j);
 	}
 	return (sum);
 }
-
