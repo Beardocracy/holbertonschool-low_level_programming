@@ -44,5 +44,5 @@ int main(int argc, char **argv)
 				close_to == 0 ? argv[1] : argv[2]);
 		exit(100);
 	}
-	return (0);
+	return (1);
 }
