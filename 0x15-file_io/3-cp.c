@@ -10,16 +10,14 @@
  */
 int main(int argc, char **argv)
 {
-	int file_from, file_to, ret;
+	int file_from, file_to, ret, close_to, close_from;
 	char buffer[1024];
 
-	/* If wrong number of arguments */
 	if (argc != 3)
 	{
 		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
-
 	file_from = open(argv[1], O_RDONLY);
 	if (file_from == -1)
 	{
@@ -38,9 +36,12 @@ int main(int argc, char **argv)
 		ret = read(file_from, buffer, 1024);
 		write(file_to, buffer, ret);
 	} while (ret == 1024);
-
-
-	close(file_to);
-	close(file_from);
+	close_to = close(file_to);
+	close_from = close(file_from);
+	if (close_to + close_from != 0)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't close fd\n");
+		exit(100);
+	}
 	return (0);
 }
