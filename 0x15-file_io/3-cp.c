@@ -40,7 +40,8 @@ int main(int argc, char **argv)
 	close_from = close(file_from);
 	if (close_to + close_from != 0)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd\n");
+		dprintf(STDERR_FILENO, "Error: Can't close fd %s\n",
+				close_to == 0 ? argv[1] : argv[2]);
 		exit(100);
 	}
 	return (0);
