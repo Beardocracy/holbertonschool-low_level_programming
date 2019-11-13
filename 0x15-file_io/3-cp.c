@@ -29,7 +29,7 @@ int main(int argc, char **argv)
 	if (file_to == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't write to file %s\n",
-				argv[1]);
+				argv[2]);
 		exit(99);
 	}
 	do {
