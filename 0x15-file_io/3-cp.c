@@ -8,7 +8,7 @@
  * @argv: an array of strings. The arguments.
  * Return: 0 if success.
  */
-int main(int argc, char **argv)
+void main(int argc, char **argv)
 {
 	int file_from, file_to, ret, close_to, close_from;
 	char buffer[1024];
@@ -44,5 +44,4 @@ int main(int argc, char **argv)
 				close_to == 0 ? argv[1] : argv[2]);
 		exit(100);
 	}
-	return (0);
 }
