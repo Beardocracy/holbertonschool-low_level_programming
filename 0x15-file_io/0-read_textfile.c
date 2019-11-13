@@ -20,7 +20,7 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	read(file, buffer, letters);
 	buffer[letters] = '\0';
 	for (i = 0, count = 0; buffer[i] != '\0'; i++)
-		count += write(1, &buffer[i], 1);
+		count += write(STDOUT_FILENO, &buffer[i], 1);
 
 
 	close(file);
