@@ -8,28 +8,28 @@
  */
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-	int file, i;
-	ssize_t count = 0, error_check = 0;
-	char buffer[letters + 1];
+	int file;
+	ssize_t wc, rc;
+	char *buffer;
 
 	if (filename == NULL)
 		return (0);
 	file = open(filename, O_RDONLY);
 	if (file == -1)
 		return (0);
+	buffer = malloc(sizeof(char) * letters);
+	if (buffer == NULL)
+		return (0);
 
-	read(file, buffer, letters);
-	buffer[letters] = '\0';
-	for (i = 0; buffer[i] != '\0'; i++, error_check = 0)
-	{
-		error_check += write(STDOUT_FILENO, &buffer[i], 1);
-		if (error_check == -1)
-			return (0);
-		count += error_check;
-	}
-
+	rc = read(file, buffer, letters);
+	if (rc == -1)
+		return (0);
+	wc = write(STDOUT_FILENO, buffer, rc);
+	if (wc == -1)
+		return (0);
 
 	close(file);
+	free(buffer);
 
-	return (count);
+	return (wc);
 }
