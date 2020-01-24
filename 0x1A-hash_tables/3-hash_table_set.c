@@ -66,6 +66,7 @@ int node_update_check(hash_table_t *ht, const char *key, const char *value)
 			free(temp);
 			return (1);
 		}
+		node = node->next;
 	}
 	return (0);
 }
