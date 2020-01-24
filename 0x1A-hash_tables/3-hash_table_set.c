@@ -17,6 +17,8 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	if (ht == NULL || key == NULL)
 		return (0);
 
+	if (node_update_check(ht, key, value))
+		return (1);
 	new_node = malloc(sizeof(hash_node_t));
 	if (new_node == NULL)
 		return (0);
@@ -35,4 +37,35 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	}
 
 	return (1);
+}
+
+/**
+ * node_update_check - checks a hash table for a key, updates if found.
+ * @ht: the hash table to add or update
+ * @key: string key
+ * @value: value to be stored
+ * Return: 1 if successful, 0 otherwise
+ */
+int node_update_check(hash_table_t *ht, const char *key, const char *value)
+{
+	char *temp;
+	unsigned long int hi_key;
+	hash_node_t *node;
+
+	hi_key = key_index((const unsigned char *)key, ht->size);
+
+	node = ht->array[hi_key];
+	if (node == NULL)
+		return (0);
+	while (node != NULL)
+	{
+		if (strcmp(key, node->key) == 0)
+		{
+			temp = node->value;
+			node->value = strdup(value);
+			free(temp);
+			return (1);
+		}
+	}
+	return (0);
 }
