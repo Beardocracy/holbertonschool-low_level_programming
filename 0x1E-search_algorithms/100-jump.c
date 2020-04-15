@@ -2,8 +2,6 @@
 #include <stdio.h>
 #include <math.h>
 
-size_t mmin(size_t a, size_t b);
-
 /**
  * jump_search - searches a sorted array using the Jump Search algo
  * @array: pointer to the first element of the array
@@ -18,10 +16,9 @@ int jump_search(int *array, size_t size, int value)
 	if (array == NULL || size == 0)
 		return (-1);
 
-	step = sqrt(size);
-	jump = step;
+	jump = sqrt(size);
+	step = 0;
 	prev = 0;
-	printf("Value checked array[%lu] = [%d]\n", prev, array[prev]);
 	while (step < size && array[step] < value)
 	{
 		printf("Value checked array[%lu] = [%d]\n",
@@ -30,38 +27,12 @@ int jump_search(int *array, size_t size, int value)
 		step += jump;
 	}
 	printf("Value found between indexes [%lu] and [%lu]\n", prev, step);
-	while (array[prev] < value)
+	while (prev < size && array[prev] <= value)
 	{
-		printf("Value checked array[%lu] = [%d]\n", prev,
-				array[prev]);
-		prev++;
-
+		printf("Value checked array[%lu] = [%d]\n", prev, array[prev]);
 		if (array[prev] == value)
-		{
-			printf("Value checked array[%lu] = [%d]\n", prev,
-					array[prev]);
 			return (prev);
-		}
-		if (prev == mmin(step, size))
-			return (-1);
+		prev++;
 	}
-	printf("Value checked array[%lu] = [%d]\n", prev, array[prev]);
-	if (array[prev] == value)
-		return (prev);
-
 	return (-1);
-}
-
-/**
- * mmin - returns the lesser value of 2 ints
- * @a: first value
- * @b: second value
- * Return: the minimum value of the 2
- */
-size_t mmin(size_t a, size_t b)
-{
-	if (a < b)
-		return (a);
-	else
-		return (b);
 }
