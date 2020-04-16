@@ -41,15 +41,17 @@ int adv_bin_recursive(int *array, size_t l, size_t r, int value)
 			else
 				printf("\n");
 		}
-		if (array[mid] == value)
-		{
-			if (mid != 0 && array[mid - 1] == value)
-				return (adv_bin_recursive(array, l, mid, value));
-			return (mid);
-		}
 		if (array[mid] > value)
 			return (adv_bin_recursive(array, l, mid - 1, value));
-		return (adv_bin_recursive(array, mid + 1, r, value));
+		if (array[mid] < value)
+			return (adv_bin_recursive(array, mid + 1, r, value));
+		if (mid == 0 || array[mid - 1] < value)
+			return (mid);
+		if (array[mid - 1] == value)
+		{
+			return (adv_bin_recursive(array, l, mid, value));
+		}
+		return (mid);
 	}
 	return (-1);
 }
