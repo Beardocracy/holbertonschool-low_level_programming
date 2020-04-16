@@ -23,6 +23,9 @@ int exponential_search(int *array, size_t size, int value)
 		left = right;
 		right *= 2;
 	}
+	if (right >= size)
+		right = size - 1;
+	printf("Value found between indexes [%lu] and [%lu]\n", left, right);
 	return (binary_recursive(array, left, mmin(right, size - 1), value));
 }
 
