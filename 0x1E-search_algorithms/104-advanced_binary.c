@@ -31,8 +31,6 @@ int adv_bin_recursive(int *array, size_t l, size_t r, int value)
 	if (r >= l)
 	{
 		mid = l + (r - l) / 2;
-		printf("Mid: %lu, array[%lu] = %d", mid, mid, array[mid]);
-		printf(" | Value = %d\n",  value);
 		printf("Searching in array: ");
 		while (l_temp <= r)
 		{
